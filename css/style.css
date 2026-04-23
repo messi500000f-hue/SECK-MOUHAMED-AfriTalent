@@ -1,0 +1,464 @@
+/* =========================
+RESET
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+line-height:1.6;
+color:#222;
+background:#ffffff;
+}
+
+/* =========================
+VARIABLES
+========================= */
+
+:root{
+--primary:#0d6efd;
+--secondary:#00b894;
+--dark:#111827;
+--light:#f8f9fa;
+--gray:#6c757d;
+--white:#ffffff;
+}
+
+/* =========================
+GLOBAL
+========================= */
+
+section{
+padding:80px 0;
+}
+
+h1,h2,h3,h4,h5{
+font-weight:700;
+margin-bottom:20px;
+color:var(--dark);
+}
+
+p{
+color:#555;
+margin-bottom:15px;
+}
+
+a{
+text-decoration:none;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
+padding:15px 0;
+}
+
+.navbar-brand{
+font-size:1.5rem;
+font-weight:800;
+color:var(--primary) !important;
+}
+
+.nav-link{
+font-weight:500;
+margin-left:10px;
+color:#333 !important;
+}
+
+.nav-link:hover{
+color:var(--primary) !important;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.btn{
+padding:10px 22px;
+border-radius:8px;
+font-weight:600;
+transition:0.3s;
+}
+
+.btn-primary{
+background:var(--primary);
+border:none;
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+}
+
+.btn-outline-primary:hover{
+transform:translateY(-2px);
+}
+
+/* =========================
+HERO
+========================= */
+
+#hero{
+background:linear-gradient(
+135deg,
+#eef4ff,
+#ffffff
+);
+text-align:center;
+}
+
+#hero h1{
+font-size:3rem;
+max-width:800px;
+margin:auto;
+}
+
+#hero h2{
+font-size:1.2rem;
+font-weight:400;
+color:#555;
+max-width:700px;
+margin:20px auto;
+}
+
+#hero h3{
+color:var(--primary);
+font-size:2rem;
+}
+
+/* =========================
+CARDS
+========================= */
+
+.card{
+border:none;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:0.3s;
+height:100%;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card img{
+height:220px;
+object-fit:cover;
+}
+
+.card-body{
+padding:25px;
+}
+
+/* =========================
+SECTIONS LIGHT
+========================= */
+
+.bg-light{
+background:#f8f9fa !important;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+background:var(--dark);
+color:white;
+}
+
+footer h5{
+color:white;
+}
+
+footer p{
+color:#d1d5db;
+margin-bottom:10px;
+}
+
+/* =========================
+FORM
+========================= */
+
+input,
+textarea,
+select{
+padding:12px !important;
+border-radius:8px !important;
+border:1px solid #ddd !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+box-shadow:none !important;
+border-color:var(--primary) !important;
+}
+
+/* =========================
+ACCORDION
+========================= */
+
+.accordion-button:not(.collapsed){
+background:#eef4ff;
+color:var(--primary);
+}
+
+/* =========================
+RESPONSIVE TABLET
+========================= */
+
+@media(max-width:992px){
+
+#hero h1{
+font-size:2.4rem;
+}
+
+section{
+padding:60px 0;
+}
+
+}
+
+/* =========================
+RESPONSIVE MOBILE
+========================= */
+
+@media(max-width:768px){
+
+#hero h1{
+font-size:2rem;
+}
+
+#hero h2{
+font-size:1rem;
+}
+
+.navbar{
+padding:10px 0;
+}
+
+section{
+padding:50px 0;
+}
+
+.card img{
+height:200px;
+}
+
+}
+
+/* =========================
+SMALL MOBILE
+========================= */
+
+@media(max-width:576px){
+
+#hero h1{
+font-size:1.7rem;
+}
+
+.btn{
+width:100%;
+margin-bottom:10px;
+}
+
+}/* =========================
+SCROLL SMOOTH
+========================= */
+
+html{
+scroll-behavior:smooth;
+}
+
+/* =========================
+SECTION TITLE STYLE
+========================= */
+
+section h2{
+font-size:2.2rem;
+position:relative;
+display:inline-block;
+margin-bottom:40px;
+}
+
+section h2::after{
+content:"";
+display:block;
+width:60%;
+height:4px;
+background:var(--primary);
+margin:10px auto 0;
+border-radius:20px;
+}
+
+/* =========================
+NAVBAR PREMIUM
+========================= */
+
+.navbar{
+backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.92) !important;
+transition:0.3s;
+z-index:999;
+}
+
+.navbar.scrolled{
+padding:8px 0;
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* =========================
+BUTTON PREMIUM
+========================= */
+
+.btn-primary{
+box-shadow:0 10px 20px rgba(13,110,253,0.25);
+}
+
+.btn-primary:hover{
+transform:translateY(-3px);
+box-shadow:0 14px 30px rgba(13,110,253,0.35);
+}
+
+/* =========================
+CARD PREMIUM
+========================= */
+
+.card{
+transition:all 0.35s ease;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* =========================
+ICON BOX EFFECT
+========================= */
+
+#how-it-works .col-md-3,
+#categories .col-md-4,
+#stats .col-md-3{
+
+padding:25px;
+border-radius:16px;
+transition:0.3s;
+}
+
+#how-it-works .col-md-3:hover,
+#categories .col-md-4:hover,
+#stats .col-md-3:hover{
+
+background:#ffffff;
+box-shadow:0 10px 25px rgba(0,0,0,0.07);
+transform:translateY(-6px);
+}
+
+/* =========================
+HERO FLOATING EFFECT
+========================= */
+
+#hero .btn{
+animation:floatBtn 3s ease-in-out infinite;
+}
+
+@keyframes floatBtn{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-5px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* =========================
+IMAGE ZOOM
+========================= */
+
+img{
+transition:0.4s;
+}
+
+img:hover{
+transform:scale(1.03);
+}
+
+/* =========================
+FOOTER MODERN
+========================= */
+
+footer{
+border-top:4px solid var(--primary);
+}
+
+/* =========================
+INPUT HOVER
+========================= */
+
+input:hover,
+textarea:hover,
+select:hover{
+border-color:var(--primary) !important;
+}
+
+/* =========================
+CTA SECTION
+========================= */
+
+#cta{
+background:linear-gradient(
+135deg,
+#0d6efd,
+#0056d6
+);
+color:white;
+}
+
+#cta h2{
+color:white;
+}
+
+#cta h2::after{
+background:white;
+}
+
+/* =========================
+FADE IN ANIMATION
+========================= */
+
+.fade-in{
+opacity:0;
+transform:translateY(30px);
+animation:fadeUp 1s forwards;
+}
+
+@keyframes fadeUp{
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
