@@ -663,4 +663,158 @@ footer p{
 
 .bg-light-custom{
   background:var(--light);
+}/* =========================
+   COMMIT 4
+   HERO PREMIUM
+========================= */
+header{
+  background:linear-gradient(135deg,#eef4ff,#ffffff);
+  position:relative;
+  overflow:hidden;
+}
+
+header img{
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  transform:translateY(0);
+  transition:var(--transition);
+}
+
+header img:hover{
+  transform:translateY(-8px);
+}
+
+/* =========================
+   NAV HOVER
+========================= */
+.nav-link{
+  position:relative;
+}
+
+.nav-link::after{
+  content:"";
+  position:absolute;
+  left:8px;
+  bottom:0;
+  width:0;
+  height:2px;
+  background:var(--primary);
+  transition:var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after{
+  width:70%;
+}
+
+/* =========================
+   BENTO GRID
+========================= */
+.bento-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.bento-item{
+  background:var(--white);
+  padding:30px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  transition:var(--transition);
+}
+
+.bento-item.large{
+  grid-column:span 2;
+  grid-row:span 2;
+}
+
+.bento-item.wide{
+  grid-column:span 2;
+}
+
+.bento-item.tall{
+  grid-row:span 2;
+}
+
+.bento-item:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow);
+}
+
+/* =========================
+   CARDS HOVER
+========================= */
+.card{
+  transition:var(--transition);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:var(--shadow);
+}
+
+.card img{
+  transition:var(--transition);
+}
+
+.card:hover img{
+  transform:scale(1.05);
+}
+
+/* =========================
+   CATEGORY CARDS
+========================= */
+.category-card{
+  text-align:center;
+  padding:35px 20px;
+  background:var(--white);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+  transition:var(--transition);
+}
+
+.category-card h5{
+  margin:0;
+}
+
+.category-card:hover{
+  background:var(--primary);
+  color:var(--white);
+  transform:translateY(-10px);
+}
+
+.category-card:hover p,
+.category-card:hover h5{
+  color:var(--white);
+}
+
+/* =========================
+   BUTTONS PREMIUM
+========================= */
+.btn{
+  transform:translateY(0);
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-sm);
+}
+
+/* =========================
+   STATS BLOCK
+========================= */
+.stats-box{
+  background:rgba(255,255,255,0.12);
+  padding:25px;
+  border-radius:var(--radius);
+  backdrop-filter:blur(6px);
+}
+
+/* =========================
+   IMAGE RADIUS
+========================= */
+.card img,
+section img{
+  border-radius:16px;
 }
