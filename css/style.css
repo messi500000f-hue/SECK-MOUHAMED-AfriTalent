@@ -817,4 +817,141 @@ header img:hover{
 .card img,
 section img{
   border-radius:16px;
+}/* =========================
+   COMMIT 5
+   RESPONSIVE TABLETTE
+========================= */
+@media (max-width: 992px){
+
+  h1{
+    font-size:2.4rem;
+  }
+
+  h2{
+    font-size:1.9rem;
+  }
+
+  header{
+    padding:70px 0;
+    text-align:center;
+  }
+
+  header .row{
+    gap:40px;
+  }
+
+  .navbar-nav{
+    padding-top:15px;
+  }
+
+  .nav-link{
+    margin-left:0;
+    padding:10px 0;
+  }
+
+  .bento-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .bento-item.large,
+  .bento-item.wide,
+  .bento-item.tall{
+    grid-column:span 1;
+    grid-row:span 1;
+  }
+
+  section{
+    padding:70px 0;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px){
+
+  body{
+    text-align:center;
+  }
+
+  h1{
+    font-size:2rem;
+  }
+
+  h2{
+    font-size:1.6rem;
+  }
+
+  h3{
+    font-size:1.3rem;
+  }
+
+  p{
+    font-size:0.95rem;
+  }
+
+  section{
+    padding:55px 0;
+  }
+
+  header{
+    padding:55px 0;
+  }
+
+  .container{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .row > *{
+    margin-bottom:20px;
+  }
+
+  .btn{
+    width:100%;
+    padding:14px;
+  }
+
+  .card-body{
+    padding:20px;
+  }
+
+  .bento-grid{
+    grid-template-columns:1fr;
+  }
+
+  footer{
+    padding:25px 0;
+  }
+}
+
+/* =========================
+   PETIT MOBILE
+========================= */
+@media (max-width: 576px){
+
+  h1{
+    font-size:1.7rem;
+  }
+
+  h2{
+    font-size:1.4rem;
+  }
+
+  .navbar-brand{
+    font-size:1.2rem;
+  }
+
+  .btn{
+    font-size:0.95rem;
+  }
+
+  .form-control,
+  .form-select{
+    padding:10px 12px;
+  }
+
+  section{
+    padding:45px 0;
+  }
 }
