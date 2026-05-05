@@ -73,4 +73,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
+});/* =========================
+   COMMIT 7
+   COUNTERS + FADE IN
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* =========================
+     FADE IN ELEMENTS
+  ========================= */
+  const fadeElements = document.querySelectorAll(
+    "section, .card, img, .col-md-4, .col-md-3, .col-md-6"
+  );
+
+  fadeElements.forEach(function (el) {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(30px)";
+    el.style.transition = "all 0.8s ease";
+  });
+
+  const fadeObserver = new IntersectionObserver(function(entries){
+
+    entries.forEach(function(entry){
+
+      if(entry.isIntersecting){
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
+
+    });
+
+  },{
+    threshold:0.15
+  });
+
+  fadeElements.forEach(function(el){
+    fadeObserver.observe(el);
+  });
+
+  /* =========================
+     COUNTERS
+  ========================= */
+  const counters = document.querySelectorAll("[data-target]");
+
+  const counterObserver = new IntersectionObserver(function(entries){
+
+    entries.forEach(function(entry){
+
+      if(entry.isIntersecting){
+
+        const counter = entry.target;
+        const target = +counter.getAttribute("data-target");
+
+        let start = 0;
+        const speed = 25;
+
+        const updateCounter = () => {
+
+          start += Math.ceil(target / 80);
+
+          if(start < target){
+            counter.innerText = start;
+            setTimeout(updateCounter, speed);
+          }else{
+            counter.innerText = target;
+          }
+
+        };
+
+        updateCounter();
+        counterObserver.unobserve(counter);
+
+      }
+
+    });
+
+  },{
+    threshold:0.5
+  });
+
+  counters.forEach(function(counter){
+    counterObserver.observe(counter);
+  });
+
 });
