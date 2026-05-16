@@ -1,160 +1,239 @@
 /* =========================
-   COMMIT 6
-   DARK MODE + NAVBAR SCROLL
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const body = document.body;
-  const navbar = document.querySelector(".navbar");
-
-  /* =========================
-     BOUTON DARK MODE
-  ========================= */
-  const toggleBtn = document.createElement("button");
-  toggleBtn.className = "btn btn-sm btn-outline-light ms-3";
-  toggleBtn.id = "theme-toggle";
-  toggleBtn.innerText = "🌙";
-
-  const navContainer = document.querySelector(".navbar .container");
-  navContainer.appendChild(toggleBtn);
-
-  /* =========================
-     RESTAURATION THEME
-  ========================= */
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark") {
-    enableDarkMode();
-  }
-
-  /* =========================
-     CLICK TOGGLE
-  ========================= */
-  toggleBtn.addEventListener("click", function () {
-
-    if (body.classList.contains("dark-mode")) {
-      disableDarkMode();
-    } else {
-      enableDarkMode();
-    }
-
-  });
-
-  /* =========================
-     FUNCTIONS
-  ========================= */
-  function enableDarkMode() {
-    body.classList.add("dark-mode");
-    toggleBtn.innerText = "☀️";
-    localStorage.setItem("theme", "dark");
-  }
-
-  function disableDarkMode() {
-    body.classList.remove("dark-mode");
-    toggleBtn.innerText = "🌙";
-    localStorage.setItem("theme", "light");
-  }
-
-  /* =========================
-     NAVBAR SCROLL
-  ========================= */
-  window.addEventListener("scroll", function () {
-
-    if (window.scrollY > 40) {
-      navbar.style.padding = "10px 0";
-      navbar.style.boxShadow = "0 10px 20px rgba(0,0,0,0.08)";
-      navbar.style.background = "#111827";
-    } else {
-      navbar.style.padding = "18px 0";
-      navbar.style.boxShadow = "none";
-      navbar.style.background = "";
-    }
-
-  });
-
-});/* =========================
-   COMMIT 7
-   COUNTERS + FADE IN
+   COMMIT 8
+   FILTER + FORM VALIDATION
 ========================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
   /* =========================
-     FADE IN ELEMENTS
+     FILTRAGE FREELANCES
   ========================= */
-  const fadeElements = document.querySelectorAll(
-    "section, .card, img, .col-md-4, .col-md-3, .col-md-6"
-  );
+  const categoryFilter = document.getElementById("categoryFilter");
+  const budgetFilter = document.getElementById("budgetFilter");
+  const searchFilter = document.getElementById("searchFilter");
+  const freelancerCards = document.querySelectorAll(".freelancer-card");
 
-  fadeElements.forEach(function (el) {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "all 0.8s ease";
-  });
+  function filterFreelancers() {
 
-  const fadeObserver = new IntersectionObserver(function(entries){
+    if (!freelancerCards.length) return;
 
-    entries.forEach(function(entry){
+    const categoryValue = categoryFilter
+      ? categoryFilter.value
+      : "all";
 
-      if(entry.isIntersecting){
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
+    const budgetValue = budgetFilter
+      ? budgetFilter.value
+      : "all";
+
+    const searchValue = searchFilter
+      ? searchFilter.value.toLowerCase().trim()
+      : "";
+
+    freelancerCards.forEach(function(card){
+
+      const category = card.dataset.category;
+      const budget = parseInt(card.dataset.budget);
+      const name = card.dataset.name;
+
+      /* Catégorie */
+      const categoryMatch =
+        categoryValue === "all" ||
+        category === categoryValue;
+
+      /* Budget */
+      let budgetMatch = true;
+
+      if (budgetValue === "low") {
+        budgetMatch = budget < 100;
+      }
+
+      if (budgetValue === "mid") {
+        budgetMatch = budget >= 100 && budget <= 150;
+      }
+
+      if (budgetValue === "high") {
+        budgetMatch = budget > 150;
+      }
+
+      /* Recherche */
+      const searchMatch =
+        name.includes(searchValue);
+
+      /* Affichage */
+      if (
+        categoryMatch &&
+        budgetMatch &&
+        searchMatch
+      ) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
       }
 
     });
 
-  },{
-    threshold:0.15
-  });
+  }
 
-  fadeElements.forEach(function(el){
-    fadeObserver.observe(el);
-  });
+  if (categoryFilter) {
+    categoryFilter.addEventListener(
+      "change",
+      filterFreelancers
+    );
+  }
+
+  if (budgetFilter) {
+    budgetFilter.addEventListener(
+      "change",
+      filterFreelancers
+    );
+  }
+
+  if (searchFilter) {
+    searchFilter.addEventListener(
+      "input",
+      filterFreelancers
+    );
+  }
 
   /* =========================
-     COUNTERS
+     FORM VALIDATION
   ========================= */
-  const counters = document.querySelectorAll("[data-target]");
+  const form = document.getElementById("contactForm");
 
-  const counterObserver = new IntersectionObserver(function(entries){
+  if (!form) return;
 
-    entries.forEach(function(entry){
+  const nom = document.getElementById("nom");
+  const prenom = document.getElementById("prenom");
+  const email = document.getElementById("email");
+  const sujet = document.getElementById("sujet");
+  const message = document.getElementById("message");
 
-      if(entry.isIntersecting){
+  const emailRegex =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        const counter = entry.target;
-        const target = +counter.getAttribute("data-target");
+  function showError(input, text){
 
-        let start = 0;
-        const speed = 25;
+    input.classList.add("is-invalid");
 
-        const updateCounter = () => {
+    const error =
+      input.parentElement.querySelector(
+        ".error-message"
+      );
 
-          start += Math.ceil(target / 80);
+    if(error){
+      error.textContent = text;
+    }
 
-          if(start < target){
-            counter.innerText = start;
-            setTimeout(updateCounter, speed);
-          }else{
-            counter.innerText = target;
-          }
+  }
 
-        };
+  function clearError(input){
 
-        updateCounter();
-        counterObserver.unobserve(counter);
+    input.classList.remove("is-invalid");
 
-      }
+    const error =
+      input.parentElement.querySelector(
+        ".error-message"
+      );
 
-    });
+    if(error){
+      error.textContent = "";
+    }
 
-  },{
-    threshold:0.5
-  });
+  }
 
-  counters.forEach(function(counter){
-    counterObserver.observe(counter);
+  form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let isValid = true;
+
+    /* Reset */
+    [
+      nom,
+      prenom,
+      email,
+      sujet,
+      message
+    ].forEach(clearError);
+
+    /* Nom */
+    if (
+      nom.value.trim().length < 2
+    ) {
+
+      showError(
+        nom,
+        "Nom invalide"
+      );
+
+      isValid = false;
+    }
+
+    /* Prénom */
+    if (
+      prenom.value.trim().length < 2
+    ) {
+
+      showError(
+        prenom,
+        "Prénom invalide"
+      );
+
+      isValid = false;
+    }
+
+    /* Email */
+    if (
+      !emailRegex.test(
+        email.value.trim()
+      )
+    ) {
+
+      showError(
+        email,
+        "Email invalide"
+      );
+
+      isValid = false;
+    }
+
+    /* Sujet */
+    if (
+      sujet.value === ""
+    ) {
+
+      showError(
+        sujet,
+        "Choisissez un sujet"
+      );
+
+      isValid = false;
+    }
+
+    /* Message */
+    if (
+      message.value.trim().length < 10
+    ) {
+
+      showError(
+        message,
+        "Message trop court"
+      );
+
+      isValid = false;
+    }
+
+    /* Success */
+    if (isValid) {
+
+      alert(
+        "Message envoyé avec succès !"
+      );
+
+      form.reset();
+
+    }
+
   });
 
 });
