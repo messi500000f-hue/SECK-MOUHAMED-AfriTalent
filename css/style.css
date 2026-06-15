@@ -1,6 +1,3 @@
-/* =========================
-RESET
-========================= */
 
 *{
 margin:0;
@@ -15,10 +12,6 @@ color:#222;
 background:#ffffff;
 }
 
-/* =========================
-VARIABLES
-========================= */
-
 :root{
 --primary:#0d6efd;
 --secondary:#00b894;
@@ -27,10 +20,6 @@ VARIABLES
 --gray:#6c757d;
 --white:#ffffff;
 }
-
-/* =========================
-GLOBAL
-========================= */
 
 section{
 padding:80px 0;
@@ -56,10 +45,6 @@ max-width:100%;
 display:block;
 }
 
-/* =========================
-NAVBAR
-========================= */
-
 .navbar{
 box-shadow:0 2px 8px rgba(0,0,0,0.05);
 padding:15px 0;
@@ -81,10 +66,6 @@ color:#333 !important;
 color:var(--primary) !important;
 }
 
-/* =========================
-BUTTONS
-========================= */
-
 .btn{
 padding:10px 22px;
 border-radius:8px;
@@ -104,10 +85,6 @@ transform:translateY(-2px);
 .btn-outline-primary:hover{
 transform:translateY(-2px);
 }
-
-/* =========================
-HERO
-========================= */
 
 #hero{
 background:linear-gradient(
@@ -137,10 +114,6 @@ color:var(--primary);
 font-size:2rem;
 }
 
-/* =========================
-CARDS
-========================= */
-
 .card{
 border:none;
 border-radius:16px;
@@ -163,15 +136,10 @@ object-fit:cover;
 padding:25px;
 }
 
-/* =========================
-SECTIONS LIGHT
-========================= */
-
 .bg-light{
 background:#f8f9fa !important;
 }
 
-/* =========================
 FOOTER
 ========================= */
 
@@ -189,10 +157,6 @@ color:#d1d5db;
 margin-bottom:10px;
 }
 
-/* =========================
-FORM
-========================= */
-
 input,
 textarea,
 select{
@@ -208,18 +172,10 @@ box-shadow:none !important;
 border-color:var(--primary) !important;
 }
 
-/* =========================
-ACCORDION
-========================= */
-
 .accordion-button:not(.collapsed){
 background:#eef4ff;
 color:var(--primary);
 }
-
-/* =========================
-RESPONSIVE TABLET
-========================= */
 
 @media(max-width:992px){
 
@@ -232,10 +188,6 @@ padding:60px 0;
 }
 
 }
-
-/* =========================
-RESPONSIVE MOBILE
-========================= */
 
 @media(max-width:768px){
 
@@ -261,10 +213,6 @@ height:200px;
 
 }
 
-/* =========================
-SMALL MOBILE
-========================= */
-
 @media(max-width:576px){
 
 #hero h1{
@@ -276,17 +224,10 @@ width:100%;
 margin-bottom:10px;
 }
 
-}/* =========================
-SCROLL SMOOTH
-========================= */
-
+}
 html{
 scroll-behavior:smooth;
 }
-
-/* =========================
-SECTION TITLE STYLE
-========================= */
 
 section h2{
 font-size:2.2rem;
@@ -305,10 +246,6 @@ margin:10px auto 0;
 border-radius:20px;
 }
 
-/* =========================
-NAVBAR PREMIUM
-========================= */
-
 .navbar{
 backdrop-filter:blur(10px);
 background:rgba(255,255,255,0.92) !important;
@@ -321,10 +258,6 @@ padding:8px 0;
 box-shadow:0 10px 20px rgba(0,0,0,0.08);
 }
 
-/* =========================
-BUTTON PREMIUM
-========================= */
-
 .btn-primary{
 box-shadow:0 10px 20px rgba(13,110,253,0.25);
 }
@@ -334,10 +267,6 @@ transform:translateY(-3px);
 box-shadow:0 14px 30px rgba(13,110,253,0.35);
 }
 
-/* =========================
-CARD PREMIUM
-========================= */
-
 .card{
 transition:all 0.35s ease;
 }
@@ -346,10 +275,6 @@ transition:all 0.35s ease;
 transform:translateY(-10px);
 box-shadow:0 20px 40px rgba(0,0,0,0.12);
 }
-
-/* =========================
-ICON BOX EFFECT
-========================= */
 
 #how-it-works .col-md-3,
 #categories .col-md-4,
@@ -368,10 +293,6 @@ background:#ffffff;
 box-shadow:0 10px 25px rgba(0,0,0,0.07);
 transform:translateY(-6px);
 }
-
-/* =========================
-HERO FLOATING EFFECT
-========================= */
 
 #hero .btn{
 animation:floatBtn 3s ease-in-out infinite;
@@ -393,10 +314,6 @@ transform:translateY(0px);
 
 }
 
-/* =========================
-IMAGE ZOOM
-========================= */
-
 img{
 transition:0.4s;
 }
@@ -405,27 +322,15 @@ img:hover{
 transform:scale(1.03);
 }
 
-/* =========================
-FOOTER MODERN
-========================= */
-
 footer{
 border-top:4px solid var(--primary);
 }
-
-/* =========================
-INPUT HOVER
-========================= */
 
 input:hover,
 textarea:hover,
 select:hover{
 border-color:var(--primary) !important;
 }
-
-/* =========================
-CTA SECTION
-========================= */
 
 #cta{
 background:linear-gradient(
@@ -440,15 +345,11 @@ color:white;
 color:white;
 }
 
-#cta h2::after{
+#cta h2::after {
 background:white;
 }
 
-/* =========================
-FADE IN ANIMATION
-========================= */
-
-.fade-in{
+.fade-in {
 opacity:0;
 transform:translateY(30px);
 animation:fadeUp 1s forwards;
@@ -456,20 +357,15 @@ animation:fadeUp 1s forwards;
 
 @keyframes fadeUp{
 
-to{
+to {
 opacity:1;
 transform:translateY(0);
 }
 
-}/* =========================
-   GOOGLE FONT
-========================= */
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* =========================
-   VARIABLES
-========================= */
-:root{
+:root {
   --primary:#0d6efd;
   --primary-dark:#0b5ed7;
   --dark:#111827;
@@ -489,10 +385,7 @@ transform:translateY(0);
   --section-space:80px;
 }
 
-/* =========================
-   RESET
-========================= */
-*{
+* {
   margin:0;
   padding:0;
   box-sizing:border-box;
@@ -509,10 +402,7 @@ body{
   line-height:1.7;
 }
 
-/* =========================
-   TYPOGRAPHIE
-========================= */
-h1,h2,h3,h4,h5,h6{
+h1,h2,h3,h4,h5,h6 {
   font-weight:700;
   line-height:1.3;
   margin-bottom:15px;
@@ -540,9 +430,6 @@ a{
   transition:var(--transition);
 }
 
-/* =========================
-   LAYOUT
-========================= */
 section{
   padding:var(--section-space) 0;
 }
@@ -557,9 +444,6 @@ img{
   display:block;
 }
 
-/* =========================
-   NAVBAR
-========================= */
 .navbar{
   padding:18px 0;
 }
@@ -574,9 +458,6 @@ img{
   margin-left:12px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
 .btn{
   padding:12px 24px;
   border-radius:var(--radius-sm);
@@ -593,9 +474,6 @@ img{
   background:var(--primary-dark);
 }
 
-/* =========================
-   CARDS
-========================= */
 .card{
   border:none;
   border-radius:var(--radius);
@@ -607,9 +485,6 @@ img{
   padding:25px;
 }
 
-/* =========================
-   FORMS
-========================= */
 .form-control,
 .form-select{
   padding:12px 15px;
@@ -623,9 +498,6 @@ img{
   border-color:var(--primary);
 }
 
-/* =========================
-   HERO
-========================= */
 header{
   padding:100px 0;
 }
@@ -634,9 +506,6 @@ header p{
   font-size:1.1rem;
 }
 
-/* =========================
-   FOOTER
-========================= */
 footer{
   padding:30px 0;
 }
@@ -646,9 +515,6 @@ footer p{
   margin:0;
 }
 
-/* =========================
-   UTILITAIRES
-========================= */
 .rounded-custom{
   border-radius:var(--radius);
 }
@@ -663,10 +529,7 @@ footer p{
 
 .bg-light-custom{
   background:var(--light);
-}/* =========================
-   COMMIT 4
-   HERO PREMIUM
-========================= */
+}
 header{
   background:linear-gradient(135deg,#eef4ff,#ffffff);
   position:relative;
@@ -684,9 +547,6 @@ header img:hover{
   transform:translateY(-8px);
 }
 
-/* =========================
-   NAV HOVER
-========================= */
 .nav-link{
   position:relative;
 }
@@ -707,9 +567,6 @@ header img:hover{
   width:70%;
 }
 
-/* =========================
-   BENTO GRID
-========================= */
 .bento-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -742,9 +599,6 @@ header img:hover{
   box-shadow:var(--shadow);
 }
 
-/* =========================
-   CARDS HOVER
-========================= */
 .card{
   transition:var(--transition);
 }
@@ -762,9 +616,6 @@ header img:hover{
   transform:scale(1.05);
 }
 
-/* =========================
-   CATEGORY CARDS
-========================= */
 .category-card{
   text-align:center;
   padding:35px 20px;
@@ -789,7 +640,6 @@ header img:hover{
   color:var(--white);
 }
 
-/* =========================
    BUTTONS PREMIUM
 ========================= */
 .btn{
@@ -801,9 +651,6 @@ header img:hover{
   box-shadow:var(--shadow-sm);
 }
 
-/* =========================
-   STATS BLOCK
-========================= */
 .stats-box{
   background:rgba(255,255,255,0.12);
   padding:25px;
@@ -811,16 +658,11 @@ header img:hover{
   backdrop-filter:blur(6px);
 }
 
-/* =========================
-   IMAGE RADIUS
-========================= */
 .card img,
 section img{
   border-radius:16px;
-}/* =========================
-   COMMIT 5
-   RESPONSIVE TABLETTE
-========================= */
+}
+
 @media (max-width: 992px){
 
   h1{
@@ -865,9 +707,6 @@ section img{
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
 @media (max-width: 768px){
 
   body{
@@ -925,9 +764,7 @@ section img{
   }
 }
 
-/* =========================
-   PETIT MOBILE
-========================= */
+
 @media (max-width: 576px){
 
   h1{
@@ -954,4 +791,74 @@ section img{
   section{
     padding:45px 0;
   }
+}
+
+
+.dark-mode {
+  background-color: #111827;
+  color: #f8f9fa;
+}
+
+.dark-mode p,
+.dark-mode li,
+.dark-mode label,
+.dark-mode small {
+  color: #d1d5db;
+}
+
+.dark-mode .bg-light {
+  background-color: #1f2937 !important;
+}
+
+.dark-mode .card {
+  background-color: #1f2937;
+  color: #f8f9fa;
+  border: 1px solid #374151;
+}
+
+.dark-mode .card p,
+.dark-mode .card h1,
+.dark-mode .card h2,
+.dark-mode .card h3,
+.dark-mode .card h4,
+.dark-mode .card h5,
+.dark-mode .card h6 {
+  color: inherit;
+}
+
+.dark-mode .navbar {
+  background-color: #000 !important;
+}
+
+.dark-mode footer {
+  background-color: #000 !important;
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+  background-color: #1f2937;
+  color: #f8f9fa;
+  border-color: #374151;
+}
+
+.dark-mode .form-control::placeholder {
+  color: #9ca3af;
+}
+
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+  background-color: #1f2937;
+  color: #f8f9fa;
+}
+
+.dark-mode header {
+  background: linear-gradient(
+    135deg,
+    #111827,
+    #1f2937
+  ) !important;
+}
+
+.dark-mode .btn-outline-light {
+  border-color: #f8f9fa;
 }

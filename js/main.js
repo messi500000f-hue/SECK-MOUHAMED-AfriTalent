@@ -1,46 +1,210 @@
-/* =========================
-   COMMIT 8
-   FILTER + FORM VALIDATION
-========================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const navbar = document.querySelector(".navbar");
 
-  /* =========================
-     FILTRAGE FREELANCES
-  ========================= */
-  const categoryFilter = document.getElementById("categoryFilter");
-  const budgetFilter = document.getElementById("budgetFilter");
-  const searchFilter = document.getElementById("searchFilter");
-  const freelancerCards = document.querySelectorAll(".freelancer-card");
+  if (navbar) {
+
+    const toggleBtn = document.createElement("button");
+
+    toggleBtn.id = "theme-toggle";
+    toggleBtn.className = "btn btn-sm btn-outline-light ms-3";
+    toggleBtn.textContent = "🌙";
+
+    const navContainer = navbar.querySelector(".container");
+
+    if (navContainer) {
+      navContainer.appendChild(toggleBtn);
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      enableDarkMode();
+    }
+
+    toggleBtn.addEventListener("click", () => {
+
+      if (body.classList.contains("dark-mode")) {
+        disableDarkMode();
+      } else {
+        enableDarkMode();
+      }
+
+    });
+
+    function enableDarkMode() {
+      body.classList.add("dark-mode");
+      toggleBtn.textContent = "☀️";
+      localStorage.setItem("theme", "dark");
+    }
+
+    function disableDarkMode() {
+      body.classList.remove("dark-mode");
+      toggleBtn.textContent = "🌙";
+      localStorage.setItem("theme", "light");
+    }
+
+  }
+
+  if (navbar) {
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 40) {
+
+        navbar.style.padding = "10px 0";
+        navbar.style.boxShadow =
+          "0 10px 20px rgba(0,0,0,0.08)";
+        navbar.style.background = "#111827";
+
+      } else {
+
+        navbar.style.padding = "";
+        navbar.style.boxShadow = "";
+        navbar.style.background = "";
+
+      }
+
+    });
+
+  }
+
+  const fadeElements = document.querySelectorAll(
+    "section, .card, img, .col-md-3, .col-md-4, .col-md-6"
+  );
+
+  fadeElements.forEach((element) => {
+
+    element.style.opacity = "0";
+    element.style.transform = "translateY(30px)";
+    element.style.transition = "all 0.8s ease";
+
+  });
+
+  const fadeObserver = new IntersectionObserver(
+
+    (entries) => {
+
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.style.opacity = "1";
+          entry.target.style.transform =
+            "translateY(0)";
+
+        }
+
+      });
+
+    },
+
+    {
+      threshold: 0.15
+    }
+
+  );
+
+  fadeElements.forEach((element) => {
+    fadeObserver.observe(element);
+  });
+
+  const counters =
+    document.querySelectorAll("[data-target]");
+
+  const counterObserver = new IntersectionObserver(
+
+    (entries) => {
+
+      entries.forEach((entry) => {
+
+        if (!entry.isIntersecting) return;
+
+        const counter = entry.target;
+        const target =
+          parseInt(counter.dataset.target);
+
+        let current = 0;
+
+        const increment =
+          Math.ceil(target / 80);
+
+        function updateCounter() {
+
+          current += increment;
+
+          if (current < target) {
+
+            counter.textContent = current;
+            setTimeout(updateCounter, 25);
+
+          } else {
+
+            counter.textContent = target;
+
+          }
+
+        }
+
+        updateCounter();
+
+        counterObserver.unobserve(counter);
+
+      });
+
+    },
+
+    {
+      threshold: 0.5
+    }
+
+  );
+
+  counters.forEach((counter) => {
+    counterObserver.observe(counter);
+  });
+
+  const categoryFilter =
+    document.getElementById("categoryFilter");
+
+  const budgetFilter =
+    document.getElementById("budgetFilter");
+
+  const searchFilter =
+    document.getElementById("searchFilter");
+
+  const freelancerCards =
+    document.querySelectorAll(".freelancer-card");
 
   function filterFreelancers() {
 
     if (!freelancerCards.length) return;
 
-    const categoryValue = categoryFilter
-      ? categoryFilter.value
-      : "all";
+    const categoryValue =
+      categoryFilter?.value || "all";
 
-    const budgetValue = budgetFilter
-      ? budgetFilter.value
-      : "all";
+    const budgetValue =
+      budgetFilter?.value || "all";
 
-    const searchValue = searchFilter
-      ? searchFilter.value.toLowerCase().trim()
-      : "";
+    const searchValue =
+      searchFilter?.value.toLowerCase().trim() || "";
 
-    freelancerCards.forEach(function(card){
+    freelancerCards.forEach((card) => {
 
-      const category = card.dataset.category;
-      const budget = parseInt(card.dataset.budget);
-      const name = card.dataset.name;
+      const category =
+        card.dataset.category;
 
-      /* Catégorie */
+      const budget =
+        parseInt(card.dataset.budget);
+
+      const name =
+        card.dataset.name.toLowerCase();
+
       const categoryMatch =
         categoryValue === "all" ||
         category === categoryValue;
 
-      /* Budget */
       let budgetMatch = true;
 
       if (budgetValue === "low") {
@@ -48,70 +212,68 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (budgetValue === "mid") {
-        budgetMatch = budget >= 100 && budget <= 150;
+        budgetMatch =
+          budget >= 100 &&
+          budget <= 150;
       }
 
       if (budgetValue === "high") {
         budgetMatch = budget > 150;
       }
 
-      /* Recherche */
       const searchMatch =
         name.includes(searchValue);
 
-      /* Affichage */
-      if (
+      card.style.display =
         categoryMatch &&
         budgetMatch &&
         searchMatch
-      ) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
+          ? "block"
+          : "none";
 
     });
 
   }
 
-  if (categoryFilter) {
-    categoryFilter.addEventListener(
-      "change",
-      filterFreelancers
-    );
-  }
+  categoryFilter?.addEventListener(
+    "change",
+    filterFreelancers
+  );
 
-  if (budgetFilter) {
-    budgetFilter.addEventListener(
-      "change",
-      filterFreelancers
-    );
-  }
+  budgetFilter?.addEventListener(
+    "change",
+    filterFreelancers
+  );
 
-  if (searchFilter) {
-    searchFilter.addEventListener(
-      "input",
-      filterFreelancers
-    );
-  }
+  searchFilter?.addEventListener(
+    "input",
+    filterFreelancers
+  );
 
-  /* =========================
-     FORM VALIDATION
-  ========================= */
-  const form = document.getElementById("contactForm");
+  const form =
+    document.getElementById("contactForm");
 
   if (!form) return;
 
-  const nom = document.getElementById("nom");
-  const prenom = document.getElementById("prenom");
-  const email = document.getElementById("email");
-  const sujet = document.getElementById("sujet");
-  const message = document.getElementById("message");
+  const nom =
+    document.getElementById("nom");
+
+  const prenom =
+    document.getElementById("prenom");
+
+  const email =
+    document.getElementById("email");
+
+  const sujet =
+    document.getElementById("sujet");
+
+  const message =
+    document.getElementById("message");
 
   const emailRegex =
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  function showError(input, text){
+  function showError(input, text) {
 
     input.classList.add("is-invalid");
 
@@ -120,13 +282,13 @@ document.addEventListener("DOMContentLoaded", function () {
         ".error-message"
       );
 
-    if(error){
+    if (error) {
       error.textContent = text;
     }
 
   }
 
-  function clearError(input){
+  function clearError(input) {
 
     input.classList.remove("is-invalid");
 
@@ -135,95 +297,58 @@ document.addEventListener("DOMContentLoaded", function () {
         ".error-message"
       );
 
-    if(error){
+    if (error) {
       error.textContent = "";
     }
 
   }
 
-  form.addEventListener("submit", function(e){
+  form.addEventListener("submit", (e) => {
 
     e.preventDefault();
 
     let isValid = true;
 
-    /* Reset */
-    [
-      nom,
-      prenom,
-      email,
-      sujet,
-      message
-    ].forEach(clearError);
+    [nom, prenom, email, sujet, message]
+      .forEach(clearError);
 
-    /* Nom */
-    if (
-      nom.value.trim().length < 2
-    ) {
-
-      showError(
-        nom,
-        "Nom invalide"
-      );
-
+    if (nom.value.trim().length < 2) {
+      showError(nom, "Nom invalide");
       isValid = false;
     }
 
-    /* Prénom */
-    if (
-      prenom.value.trim().length < 2
-    ) {
-
-      showError(
-        prenom,
-        "Prénom invalide"
-      );
-
+    if (prenom.value.trim().length < 2) {
+      showError(prenom, "Prénom invalide");
       isValid = false;
     }
 
-    /* Email */
     if (
       !emailRegex.test(
         email.value.trim()
       )
     ) {
-
-      showError(
-        email,
-        "Email invalide"
-      );
-
+      showError(email, "Email invalide");
       isValid = false;
     }
 
-    /* Sujet */
-    if (
-      sujet.value === ""
-    ) {
-
+    if (sujet.value === "") {
       showError(
         sujet,
         "Choisissez un sujet"
       );
-
       isValid = false;
     }
 
-    /* Message */
     if (
       message.value.trim().length < 10
     ) {
-
       showError(
         message,
         "Message trop court"
       );
-
       isValid = false;
     }
 
-    /* Success */
     if (isValid) {
 
       alert(
