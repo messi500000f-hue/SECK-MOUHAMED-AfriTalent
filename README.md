@@ -114,6 +114,10 @@ Projet académique réalisé en 2026.
 
 ---
 
+## Démo en ligne
+
+https://messi500000f-hue.github.io/SECK-MOUHAMED-AfriTalent/index.html
+
 ## Licence
 
 Projet réalisé à des fins pédagogiques uniquement.
